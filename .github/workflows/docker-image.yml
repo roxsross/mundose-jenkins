@@ -16,5 +16,6 @@ jobs:
       run: ls -lrt
     - name: Build the Docker image
       run: |
-        docker build . --file ./src/app/Dockerfile -t frontend:$(date +%s)
+        cd /src/app
+        docker build -t frontend:$(date +%s) .
         docker images
