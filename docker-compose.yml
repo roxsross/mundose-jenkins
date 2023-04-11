@@ -1,0 +1,24 @@
+version: '3'
+services:
+
+  frontend:
+    container_name: service-flask-app
+    build: ./src/app
+    ports:
+      - 8000:8000
+    networks:
+      - app-python
+
+  consumer:
+    container_name: consumer
+    build: ./src/consumer
+    networks:
+      - app-python
+    depends_on:
+      - frontend
+    environment:
+      - LOCAL=true
+      - PYTHONUNBUFFERED=1
+
+networks:
+  app-python:
