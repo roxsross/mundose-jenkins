@@ -6,6 +6,7 @@ on:
 
 env:
   REGISTRY: roxsross12
+  VERSION: 1.0.0
 
 jobs:
 
@@ -25,7 +26,7 @@ jobs:
     - name: Build the Docker image
       run: |
         cd src/app
-        docker build -t frontend:$(date +%s) .
+        docker build -t frontend:$VERSION .
         docker images
-        docker tag frontend:$(date +%s) $REGISTRY/frontend:$(date +%s)
-        docker push $REGISTRY/frontend:$(date +%s)
+        docker tag frontend:$VERSION $REGISTRY/frontend:$VERSION
+        docker push $REGISTRY/frontend:$VERSION
