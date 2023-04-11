@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        ls -lrt
+        docker build . --file src/app/Dockerfile -t frontend:$(date +%s)
+        docker build . --file src/comsumer/Dockerfile -t consumer:$(date +%s)
+        docker images
