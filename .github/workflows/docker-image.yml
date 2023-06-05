@@ -32,10 +32,11 @@ jobs:
         docker images
         docker tag frontend:$SHORT_SHA $REGISTRY/frontend:$SHORT_SHA
         docker push $REGISTRY/frontend:$SHORT_SHA
+        docker images
     - name: Build the Docker image consumer
       run: |
         cd src/consumer
-        docker build -t consumer:$VERSION .
+        docker build -t consumer:$SHORT_SHA .
         docker images
         docker tag consumer:$SHORT_SHA $REGISTRY/consumer:$SHORT_SHA
         docker push $REGISTRY/consumer:$SHORT_SHA
